@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Don Valle | Carta Digital & Delivery - La Ligua</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#b91c1c',
+                        primaryDark: '#991b1b',
+                        gold: '#d97706',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased pb-24 md:pb-12">
+
+    <!-- DEMO WATERMARK BANNER -->
+    <div class="bg-gradient-to-r from-amber-600 via-amber-700 to-amber-600 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center sticky top-0 z-50 shadow-md flex items-center justify-center gap-2">
+        <i class="fa-solid fa-sparkles text-amber-200"></i>
+        <span><strong>MAQUETA EN VIVO:</strong> Ejemplo de página web para restaurantes y locales de comida en La Ligua. Personalizable con su menú, fotos y colores.</span>
+    </div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-stone-200 sticky top-9 z-40">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-red-700 text-white flex items-center justify-center font-serif text-xl font-bold shadow-sm">
+                    DV
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-stone-900 leading-tight">Restaurante Don Valle</h1>
+                    <p class="text-xs text-stone-500 flex items-center gap-1">
+                        <i class="fa-solid fa-location-dot text-red-600"></i> Centro de La Ligua • <span class="text-green-600 font-medium">Abierto hoy</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-4">
+                <a href="#carta" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-stone-700 hover:text-red-700 transition">
+                    <i class="fa-solid fa-utensils text-red-600"></i> Carta
+                </a>
+                <a href="#reservas" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-stone-700 hover:text-red-700 transition">
+                    <i class="fa-regular fa-calendar-check text-red-600"></i> Reservar Mesa
+                </a>
+                <button onclick="abrirCarrito()" class="relative bg-red-700 hover:bg-red-800 text-white px-3 sm:px-4 py-2 rounded-full font-semibold text-xs sm:text-sm flex items-center gap-2 transition shadow-sm">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Ver Pedido</span>
+                    <span id="cart-count-badge" class="bg-amber-400 text-stone-900 font-bold text-xs px-2 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-stone-900 text-white overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1600&q=80" 
+             alt="Carnes y Parrilladas" 
+             class="absolute inset-0 w-full h-full object-cover object-center opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-900/60 to-transparent"></div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 py-16 sm:py-24 text-center">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-600/30 border border-red-500/40 text-red-300 text-xs sm:text-sm font-semibold mb-4 backdrop-blur-sm">
+                <i class="fa-solid fa-fire-burner"></i> Cocina Chilena Tradicional & Parrilladas
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-serif font-bold text-white mb-4 leading-tight">
+                El auténtico sabor del Valle en el corazón de La Ligua
+            </h2>
+            <p class="text-stone-300 text-sm sm:text-base max-w-2xl mx-auto mb-8">
+                Carnes a las brasas, cazuelas caseras, colaciones ejecutivas y los mejores postres típicos de nuestra zona. Pide directo por WhatsApp o reserva tu mesa.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a href="#carta" class="w-full sm:w-auto bg-red-700 hover:bg-red-800 text-white font-bold px-6 py-3.5 rounded-full shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <i class="fa-solid fa-book-open"></i> Explorar Carta Digital
+                </a>
+                <a href="#reservas" class="w-full sm:w-auto bg-stone-800/80 hover:bg-stone-700 border border-stone-600 text-white font-semibold px-6 py-3.5 rounded-full backdrop-blur-sm transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                    <i class="fa-regular fa-calendar-days"></i> Reservar para el Fin de Semana
+                </a>
+            </div>
+
+            <!-- RATING BAR -->
+            <div class="mt-10 inline-flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm bg-stone-900/80 border border-stone-800 px-5 py-2.5 rounded-2xl backdrop-blur-md">
+                <div class="flex items-center gap-1 text-amber-400">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span class="text-white font-bold ml-1">4.8 / 5.0</span>
+                </div>
+                <span class="text-stone-400 hidden sm:inline">•</span>
+                <span class="text-stone-300"><i class="fa-solid fa-comment-dots text-stone-400 me-1"></i> +190 opiniones en Google Maps</span>
+                <span class="text-stone-400 hidden sm:inline">•</span>
+                <span class="text-green-400 font-medium"><i class="fa-solid fa-motorcycle me-1"></i> Delivery a La Ligua & Valle Hermoso</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENÚ DEL DÍA PROMO BANNER -->
+    <section class="max-w-5xl mx-auto px-4 -mt-6 relative z-10">
+        <div class="bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl p-4 sm:p-6 text-stone-900 shadow-xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-xl flex items-center justify-center text-white text-2xl shrink-0">
+                    <i class="fa-solid fa-bell-concierge"></i>
+                </div>
+                <div>
+                    <span class="bg-stone-900 text-amber-300 text-[10px] sm:text-xs font-black uppercase px-2.5 py-0.5 rounded-full tracking-wider">
+                        Especial de Hoy
+                    </span>
+                    <h3 class="text-lg sm:text-xl font-bold font-serif text-white mt-1">Colación Ejecutiva Completa: $5.990</h3>
+                    <p class="text-stone-900 text-xs sm:text-sm font-medium">Plato de fondo (Pastel de Choclo / Cazuela) + Ensalada surtida + Pan amasado + Bebida o Jugo natural.</p>
+                </div>
+            </div>
+            <button onclick="agregarAlPedido('Colación Ejecutiva de Hoy', 5990)" class="w-full md:w-auto bg-stone-950 hover:bg-stone-800 text-amber-300 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shrink-0 shadow flex items-center justify-center gap-2">
+                <i class="fa-solid fa-plus"></i> Pedir Colación
+            </button>
+        </div>
+    </section>
+
+    <!-- CARTA DIGITAL SECTION -->
+    <section id="carta" class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-8">
+            <span class="text-xs uppercase tracking-widest font-bold text-red-700 bg-red-50 px-3 py-1 rounded-full">
+                Carta Digital Interactiva
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-serif font-bold text-stone-900 mt-2">Nuestras Especialidades</h2>
+            <p class="text-stone-600 text-xs sm:text-sm max-w-xl mx-auto mt-1">
+                Selecciona tus platos favoritos y agrégalos a tu pedido para enviarlo directo a nuestro WhatsApp sin intermediarios.
+            </p>
+        </div>
+
+        <!-- CATEGORY TABS -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 hide-scrollbar justify-start md:justify-center">
+            <button onclick="filtrarCategoria('todos')" class="tab-btn active bg-red-700 text-white font-semibold text-xs sm:text-sm px-4 py-2 rounded-full whitespace-nowrap transition shadow-sm">
+                🍽️ Todos los Platos
+            </button>
+            <button onclick="filtrarCategoria('carnes')" class="tab-btn bg-white hover:bg-stone-100 text-stone-700 font-semibold text-xs sm:text-sm px-4 py-2 rounded-full whitespace-nowrap border border-stone-200 transition">
+                🥩 Carnes & Parrilladas
+            </button>
+            <button onclick="filtrarCategoria('tipicos')" class="tab-btn bg-white hover:bg-stone-100 text-stone-700 font-semibold text-xs sm:text-sm px-4 py-2 rounded-full whitespace-nowrap border border-stone-200 transition">
+                🍲 Platos Típicos del Valle
+            </button>
+            <button onclick="filtrarCategoria('postres')" class="tab-btn bg-white hover:bg-stone-100 text-stone-700 font-semibold text-xs sm:text-sm px-4 py-2 rounded-full whitespace-nowrap border border-stone-200 transition">
+                🍰 Dulces & Postres de La Ligua
+            </button>
+            <button onclick="filtrarCategoria('bebidas')" class="tab-btn bg-white hover:bg-stone-100 text-stone-700 font-semibold text-xs sm:text-sm px-4 py-2 rounded-full whitespace-nowrap border border-stone-200 transition">
+                🍷 Vinos & Bebidas
+            </button>
+        </div>
+
+        <!-- MENU ITEMS GRID -->
+        <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Item 1 -->
+            <div class="menu-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="carnes">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=700&q=80" alt="Lomo a lo Pobre" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    <span class="absolute top-3 left-3 bg-red-700 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow">Recomendado</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h4 class="font-bold text-stone-900 text-base">Lomo a lo Pobre Tradicional</h4>
+                            <span class="font-bold text-red-700 text-base">$11.900</span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            350g de lomo liso jugoso acompañado de papas fritas caseras, cebolla caramelizada y dos huevos de campo fritos.
+                        </p>
+                    </div>
+                    <button onclick="agregarAlPedido('Lomo a lo Pobre Tradicional', 11900)" class="w-full bg-stone-100 hover:bg-red-700 hover:text-white text-stone-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-plus text-red-600 group-hover:text-white"></i> Agregar al Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="menu-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="carnes">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=700&q=80" alt="Parrillada Don Valle" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow">Para 2 a 3 personas</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h4 class="font-bold text-stone-900 text-base">Parrillada Don Valle</h4>
+                            <span class="font-bold text-red-700 text-base">$24.900</span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            Lomo, chuleta de centro, longaniza artesanal, prieta y chunchules a las brasas con papas cocidas y pebre liguano.
+                        </p>
+                    </div>
+                    <button onclick="agregarAlPedido('Parrillada Don Valle (2-3 pers)', 24900)" class="w-full bg-stone-100 hover:bg-red-700 hover:text-white text-stone-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-plus text-red-600 group-hover:text-white"></i> Agregar al Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="menu-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="tipicos">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1541832676-9b763b0239ab?auto=format&fit=crop&w=700&q=80" alt="Pastel de Choclo" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h4 class="font-bold text-stone-900 text-base">Pastel de Choclo en Greda</h4>
+                            <span class="font-bold text-red-700 text-base">$8.900</span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            Receta tradicional en fuente de greda: pino de posta de vacuno, presa de pollo de campo, huevo duro, aceitunas y pastelera dorada.
+                        </p>
+                    </div>
+                    <button onclick="agregarAlPedido('Pastel de Choclo en Greda', 8900)" class="w-full bg-stone-100 hover:bg-red-700 hover:text-white text-stone-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-plus text-red-600 group-hover:text-white"></i> Agregar al Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="menu-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="tipicos">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80" alt="Cazuela de Vacuno" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h4 class="font-bold text-stone-900 text-base">Cazuela Criolla de Tapapecho</h4>
+                            <span class="font-bold text-red-700 text-base">$7.500</span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            Caldo caliente casero con trozo tierno de vacuno, choclo de la estación, zapallo camote, papas y porotos verdes frescos.
+                        </p>
+                    </div>
+                    <button onclick="agregarAlPedido('Cazuela Criolla de Tapapecho', 7500)" class="w-full bg-stone-100 hover:bg-red-700 hover:text-white text-stone-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-plus text-red-600 group-hover:text-white"></i> Agregar al Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="menu-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="postres">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=700&q=80" alt="Postre Dulces de La Ligua" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    <span class="absolute top-3 left-3 bg-amber-600 text-white text-[10px] font-black uppercase px-2 py-0.5 rounded shadow">Tradición Local</span>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h4 class="font-bold text-stone-900 text-base">Copa Tradición Liguana</h4>
+                            <span class="font-bold text-red-700 text-base">$4.500</span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            Copa de helado artesanal con trozos de chilenitos y empolvados de La Ligua, manjar de campo y crema chantilly.
+                        </p>
+                    </div>
+                    <button onclick="agregarAlPedido('Copa Tradición Liguana', 4500)" class="w-full bg-stone-100 hover:bg-red-700 hover:text-white text-stone-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-plus text-red-600 group-hover:text-white"></i> Agregar al Pedido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="menu-card bg-white rounded-2xl overflow-hidden border border-stone-200/80 shadow-sm hover:shadow-md transition flex flex-col justify-between" data-category="bebidas">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=700&q=80" alt="Vino del Valle" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start gap-2 mb-1">
+                            <h4 class="font-bold text-stone-900 text-base">Jarra de Borgoña con Frutillas</h4>
+                            <span class="font-bold text-red-700 text-base">$6.900</span>
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed mb-4">
+                            1 Litro de vino tinto campesino macerado con frutillas frescas de temporada y toque justo de azúcar.
+                        </p>
+                    </div>
+                    <button onclick="agregarAlPedido('Jarra de Borgoña con Frutillas', 6900)" class="w-full bg-stone-100 hover:bg-red-700 hover:text-white text-stone-800 font-semibold py-2 px-3 rounded-xl text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fa-solid fa-plus text-red-600 group-hover:text-white"></i> Agregar al Pedido
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FORMULARIO DE RESERVA DE MESAS -->
+    <section id="reservas" class="bg-stone-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="bg-stone-800/90 rounded-3xl p-6 sm:p-10 border border-stone-700 shadow-2xl">
+                <div class="text-center mb-8">
+                    <span class="text-xs uppercase tracking-widest font-bold text-amber-400 bg-amber-400/10 border border-amber-400/20 px-3 py-1 rounded-full">
+                        Atención Personalizada
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-2">Reserva tu Mesa en 30 Segundos</h2>
+                    <p class="text-stone-300 text-xs sm:text-sm mt-1">Evita esperas los fines de semana. Completa el formulario y te confirmamos al instante por WhatsApp.</p>
+                </div>
+
+                <form onsubmit="enviarReserva(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Nombre Completo</label>
+                        <input type="text" id="reserva-nombre" required placeholder="Ej: Juan Pérez" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Teléfono WhatsApp</label>
+                        <input type="tel" id="reserva-telefono" required placeholder="+56 9 1234 5678" class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Fecha de la Reserva</label>
+                        <input type="date" id="reserva-fecha" required class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Hora Aprox.</label>
+                        <select id="reserva-hora" required class="w-full bg-stone-900 border border-stone-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-red-500">
+                            <option value="13:00">13:00 hrs (Almuerzo)</option>
+                            <option value="14:00" selected>14:00 hrs (Almuerzo)</option>
+                            <option value="15:00">15:00 hrs (Almuerzo)</option>
+                            <option value="20:00">20:00 hrs (Cena)</option>
+                            <option value="21:00">21:00 hrs (Cena)</option>
+                        </select>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-semibold text-stone-300 mb-1">Cantidad de Personas</label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="personas" value="2 personas" class="peer sr-only" checked>
+                                <div class="p-2 text-center text-xs font-bold rounded-xl border border-stone-700 peer-checked:bg-red-700 peer-checked:border-red-600 peer-checked:text-white transition">2 Personas</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="personas" value="4 personas" class="peer sr-only">
+                                <div class="p-2 text-center text-xs font-bold rounded-xl border border-stone-700 peer-checked:bg-red-700 peer-checked:border-red-600 peer-checked:text-white transition">4 Personas</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="personas" value="6 personas" class="peer sr-only">
+                                <div class="p-2 text-center text-xs font-bold rounded-xl border border-stone-700 peer-checked:bg-red-700 peer-checked:border-red-600 peer-checked:text-white transition">6 Personas</div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="personas" value="Más de 8 (Grupo)" class="peer sr-only">
+                                <div class="p-2 text-center text-xs font-bold rounded-xl border border-stone-700 peer-checked:bg-red-700 peer-checked:border-red-600 peer-checked:text-white transition">+8 Grupo</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-2 mt-2">
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-sm sm:text-base">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Solicitar Reserva Directa por WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- UBICACIÓN Y HORARIOS -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-xs uppercase tracking-widest font-bold text-red-700 bg-red-50 px-3 py-1 rounded-full">
+                    Visítanos en La Ligua
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-serif font-bold text-stone-900 mt-2">Fácil acceso y amplio estacionamiento</h3>
+                <p class="text-stone-600 text-xs sm:text-sm mt-3 leading-relaxed">
+                    Ubicados a solo 2 cuadras de la Plaza de Armas de La Ligua. Ideal para almuerzos familiares de domingo, paradas de turistas hacia la costa o reuniones de empresas.
+                </p>
+
+                <div class="mt-6 space-y-3 text-xs sm:text-sm">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <strong class="text-stone-900">Dirección:</strong>
+                            <p class="text-stone-600">Calle Ortiz de Rozas 450, La Ligua, Región de Valparaíso.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-red-100 text-red-700 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <strong class="text-stone-900">Horario de Atención:</strong>
+                            <p class="text-stone-600">Lunes a Domingo: 12:30 a 22:30 hrs continuado.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center shrink-0">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <strong class="text-stone-900">Teléfono / WhatsApp Local:</strong>
+                            <p class="text-stone-600">+56 9 7314 9104</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAP CARD PREVIEW -->
+            <div class="bg-stone-200 rounded-3xl h-72 sm:h-80 relative overflow-hidden border border-stone-300 shadow-inner flex flex-col items-center justify-center text-center p-6">
+                <i class="fa-solid fa-map-location-dot text-stone-400 text-5xl mb-3"></i>
+                <h4 class="font-bold text-stone-800 text-base">Mapa Interactivo de Google Maps</h4>
+                <p class="text-xs text-stone-500 max-w-xs mt-1">En la web real aquí se integra el mapa interactivo con botón directo "¿Cómo llegar con Waze o Google Maps?".</p>
+                <a href="https://maps.google.com" target="_blank" class="mt-4 bg-white border border-stone-300 hover:bg-stone-50 text-stone-800 font-semibold text-xs px-4 py-2 rounded-xl shadow-sm transition">
+                    <i class="fa-solid fa-diamond-turn-right text-red-600 me-1"></i> Abrir en Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 text-stone-400 py-10 border-t border-stone-900 text-xs">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="text-white font-bold text-sm">Restaurante Don Valle • La Ligua</p>
+                <p class="text-stone-500 mt-0.5">Tradición culinaria del Valle de Petorca.</p>
+            </div>
+            <div class="text-stone-500">
+                <p>© 2026 Restaurante Don Valle. Todos los derechos reservados.</p>
+                <p class="text-[11px] text-amber-500 mt-1">Sitio web diseñado y optimizado para celulares por Desarrollador Web Local.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL / DRAWER DEL CARRITO DE PEDIDO -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex justify-end">
+        <div class="bg-white w-full max-w-md h-full flex flex-col justify-between shadow-2xl p-6 overflow-y-auto">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-stone-200">
+                    <h3 class="text-lg font-bold text-stone-900 flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping text-red-600"></i> Tu Pedido
+                    </h3>
+                    <button onclick="cerrarCarrito()" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items-list" class="divide-y divide-stone-100 my-4">
+                    <!-- Dinámico por JS -->
+                    <p class="text-xs text-stone-400 text-center py-8">Aún no has agregado ningún plato a tu pedido.</p>
+                </div>
+            </div>
+
+            <div class="border-t border-stone-200 pt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-stone-600 text-sm font-semibold">Subtotal estimado:</span>
+                    <span id="cart-total" class="text-xl font-bold text-red-700">$0</span>
+                </div>
+
+                <div class="space-y-2 mb-4">
+                    <label class="block text-xs font-semibold text-stone-700">Modalidad de entrega:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalidad" value="Delivery a domicilio" class="peer sr-only" checked>
+                            <div class="p-2 text-center text-xs font-bold rounded-xl border border-stone-200 peer-checked:bg-stone-900 peer-checked:text-white transition">🛵 Delivery</div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="modalidad" value="Para retirar en el local" class="peer sr-only">
+                            <div class="p-2 text-center text-xs font-bold rounded-xl border border-stone-200 peer-checked:bg-stone-900 peer-checked:text-white transition">🛍️ Retiro en Local</div>
+                        </label>
+                    </div>
+                </div>
+
+                <button onclick="enviarPedidoWhatsApp()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm shadow-md transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> Enviar Pedido a WhatsApp
+                </button>
+                <p class="text-[11px] text-stone-400 text-center mt-2">Al pulsar, se abrirá WhatsApp con el detalle listo para enviar.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://api.whatsapp.com/send?phone=56973149104&text=Hola!%20Estoy%20viendo%20su%20p%C3%A1gina%20web%20y%20tengo%20una%20consulta." target="_blank" 
+       class="fixed bottom-5 right-5 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-xl hover:scale-110 transition-all duration-300">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- JAVASCRIPT DEL CARRITO Y FILTROS -->
+    <script>
+        let carrito = [];
+
+        function filtrarCategoria(categoria) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-red-700', 'text-white');
+                btn.classList.add('bg-white', 'text-stone-700');
+            });
+            event.target.classList.add('bg-red-700', 'text-white');
+            event.target.classList.remove('bg-white', 'text-stone-700');
+
+            const cards = document.querySelectorAll('.menu-card');
+            cards.forEach(card => {
+                if (categoria === 'todos' || card.dataset.category === categoria) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function agregarAlPedido(nombre, precio) {
+            carrito.push({ nombre, precio });
+            actualizarCarritoUI();
+            
+            // Feedback visual
+            const badge = document.getElementById('cart-count-badge');
+            badge.classList.add('scale-125');
+            setTimeout(() => badge.classList.remove('scale-125'), 200);
+        }
+
+        function eliminarDelPedido(index) {
+            carrito.splice(index, 1);
+            actualizarCarritoUI();
+        }
+
+        function actualizarCarritoUI() {
+            const count = carrito.length;
+            document.getElementById('cart-count-badge').textContent = count;
+            
+            const listContainer = document.getElementById('cart-items-list');
+            if (count === 0) {
+                listContainer.innerHTML = '<p class="text-xs text-stone-400 text-center py-8">Aún no has agregado ningún plato a tu pedido.</p>';
+                document.getElementById('cart-total').textContent = '$0';
+                return;
+            }
+
+            let total = 0;
+            let html = '';
+            carrito.forEach((item, idx) => {
+                total += item.precio;
+                html += `
+                    <div class="flex justify-between items-center py-2 text-xs">
+                        <div>
+                            <p class="font-bold text-stone-900">${item.nombre}</p>
+                            <span class="text-stone-500">$${item.precio.toLocaleString('es-CL')}</span>
+                        </div>
+                        <button onclick="eliminarDelPedido(${idx})" class="text-stone-400 hover:text-red-600 p-1">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            listContainer.innerHTML = html;
+            document.getElementById('cart-total').textContent = `$${total.toLocaleString('es-CL')}`;
+        }
+
+        function abrirCarrito() {
+            document.getElementById('cart-drawer').classList.remove('hidden');
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('cart-drawer').classList.add('hidden');
+        }
+
+        function enviarPedidoWhatsApp() {
+            if (carrito.length === 0) {
+                alert('Tu pedido está vacío. Elige platos de la carta primero.');
+                return;
+            }
+
+            const modalidad = document.querySelector('input[name="modalidad"]:checked').value;
+            let total = 0;
+            let detalle = '';
+            carrito.forEach((item, i) => {
+                total += item.precio;
+                detalle += `• ${item.nombre} ($${item.precio.toLocaleString('es-CL')})\n`;
+            });
+
+            const mensaje = `Hola Restaurante Don Valle! Quiero hacer el siguiente pedido desde su página web:\n\n` +
+                            detalle +
+                            `\nTotal estimado: $${total.toLocaleString('es-CL')}\n` +
+                            `Modalidad: ${modalidad}\n\n` +
+                            `¿Me podrían confirmar disponibilidad y tiempo de entrega? Muchas gracias.`;
+
+            const url = `https://api.whatsapp.com/send?phone=56973149104&text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        function enviarReserva(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('reserva-nombre').value;
+            const tel = document.getElementById('reserva-telefono').value;
+            const fecha = document.getElementById('reserva-fecha').value;
+            const hora = document.getElementById('reserva-hora').value;
+            const personas = document.querySelector('input[name="personas"]:checked').value;
+
+            const mensaje = `Hola Restaurante Don Valle! Quisiera solicitar una reserva de mesa desde su página web:\n\n` +
+                            `• A nombre de: ${nombre}\n` +
+                            `• Fecha: ${fecha}\n` +
+                            `• Hora: ${hora} hrs\n` +
+                            `• Cantidad: ${personas}\n` +
+                            `• Mi teléfono: ${tel}\n\n` +
+                            `¿Tienen disponibilidad para confirmar la mesa? Saludos cordiales.`;
+
+            const url = `https://api.whatsapp.com/send?phone=56973149104&text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        // Poner fecha de hoy por defecto en el input date
+        document.getElementById('reserva-fecha').value = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
